@@ -32,7 +32,7 @@ public class BombProp extends AbstractProp implements Publisher {
     @Override
     public void notifySubscriber() {
         for (Subscriber subscriber : subscribers) {
-                subscriber.update();
+            subscriber.update();
         }
         subscribers.clear();
     }

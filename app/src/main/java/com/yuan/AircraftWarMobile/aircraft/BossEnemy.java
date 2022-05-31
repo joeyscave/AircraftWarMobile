@@ -30,7 +30,7 @@ public class BossEnemy extends EliteEnemy {
             // 子弹发射位置相对飞机位置向前偏移
             // 多个子弹横向分散
             int speedX = (i - 1) * 2;
-            baseBullet = new EnemyBullet(x + (i * 2 - shootNum + 1) * 10, y, speedX, speedY*2, power);
+            baseBullet = new EnemyBullet(x + (i * 2 - shootNum + 1) * 10, y, speedX, speedY * 2, power);
             res.add(baseBullet);
         }
         return res;
@@ -40,7 +40,7 @@ public class BossEnemy extends EliteEnemy {
     public void vanish() {
         super.vanish();
         BossEnemy.exist = false;
-        GameSurfaceView.bgm_boss=false;
+        GameSurfaceView.bgm_boss = false;
         this.hp += Main.settings.bossBloodRaise;
     }
 

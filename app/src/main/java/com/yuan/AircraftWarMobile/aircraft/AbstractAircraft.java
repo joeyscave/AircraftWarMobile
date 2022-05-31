@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author hitsz
  */
-public abstract class AbstractAircraft extends AbstractFlyingObject{
+public abstract class AbstractAircraft extends AbstractFlyingObject {
     /**
      * 生命值
      */

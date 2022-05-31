@@ -20,7 +20,7 @@ public abstract class AbstractProp extends AbstractFlyingObject {
     public void active(HeroAircraft heroAircraft, List<AbstractAircraft> enemyAircraft, List<BaseBullet> enemyBullet) {
     }
 
-    public String getMusicType(){
+    public String getMusicType() {
         return null;
     }
 }

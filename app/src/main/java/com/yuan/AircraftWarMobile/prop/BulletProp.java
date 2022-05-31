@@ -14,14 +14,14 @@ public class BulletProp extends AbstractProp {
      */
     private String type;
 
-    public BulletProp(int locationX, int locationY, int speedX, int speedY,String type) {
+    public BulletProp(int locationX, int locationY, int speedX, int speedY, String type) {
         super(locationX, locationY, speedX, speedY);
-        this.type=type;
+        this.type = type;
     }
 
     @Override
     public void active(HeroAircraft heroAircraft, List<AbstractAircraft> enemyAircraft, List<BaseBullet> enemyBullet) {
-        BulletPropContext bulletPropContext=new BulletPropContext(type);
+        BulletPropContext bulletPropContext = new BulletPropContext(type);
         bulletPropContext.active(heroAircraft);
         System.out.println("BulletPropActive!");
     }

@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MainActivity">
-
+    tools:context=".activity.RegisterActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,8 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="phone"
-                android:text="" />
+                android:inputType="phone" />
         </LinearLayout>
 
         <LinearLayout
@@ -48,17 +46,14 @@
 
 
             <TextView
-                android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="15sp"
-                android:text="密码："
-
-                />
+                android:text="昵称：" />
 
             <EditText
-                android:id="@+id/userPassword"
+                android:id="@+id/userName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -72,6 +67,31 @@
             android:orientation="horizontal">
 
 
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:textSize="15sp"
+                android:text="密码："
+
+                />
+
+            <EditText
+                android:id="@+id/userPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textPassword" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
         </LinearLayout>
 
         <Button
@@ -79,14 +99,7 @@
             android:id="@+id/button2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="登录"
-            android:onClick="login" />
-
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="reg"
-            android:text="注册" />
+            android:text="注册"
+            android:onClick="register" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

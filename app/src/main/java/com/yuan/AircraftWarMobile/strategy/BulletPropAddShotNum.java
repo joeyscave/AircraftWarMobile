@@ -2,7 +2,7 @@ package com.yuan.AircraftWarMobile.strategy;
 
 import com.yuan.AircraftWarMobile.aircraft.HeroAircraft;
 
-public class BulletPropAddShotNum implements BulletPropAbstractStrategy{
+public class BulletPropAddShotNum implements BulletPropAbstractStrategy {
 
     private int increaseBullet;
 

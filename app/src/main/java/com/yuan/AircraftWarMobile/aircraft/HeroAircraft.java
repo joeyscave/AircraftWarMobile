@@ -88,7 +88,7 @@ public class HeroAircraft extends AbstractAircraft {
             if (scattering) {
                 speedX = (i - 1) * 2;
             }
-            baseBullet = new HeroBullet(x + (i * 2 - shootNum + 1) * 10, y, speedX, speedY*3, power);
+            baseBullet = new HeroBullet(x + (i * 2 - shootNum + 1) * 10, y, speedX, speedY * 3, power);
             res.add(baseBullet);
         }
         return res;

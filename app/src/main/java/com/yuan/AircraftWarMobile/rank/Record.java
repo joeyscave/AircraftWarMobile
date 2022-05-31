@@ -2,7 +2,7 @@ package com.yuan.AircraftWarMobile.rank;
 
 import java.io.Serializable;
 
-public class Record implements Serializable,Comparable<Record> {
+public class Record implements Serializable, Comparable<Record> {
     private int id;
     private int score;
     private String name;
@@ -17,15 +17,17 @@ public class Record implements Serializable,Comparable<Record> {
 
     @Override
     public int compareTo(Record record) {
-        return record.getScore()-this.getScore();
+        return record.getScore() - this.getScore();
     }
 
     @Override
     public String toString() {
-        return id + "," + name+","+score+","+date;
+        return id + "," + name + "," + score + "," + date;
     }
 
-    public int getId() { return id; }
+    public int getId() {
+        return id;
+    }
 
     public int getScore() {
         return score;
@@ -39,7 +41,9 @@ public class Record implements Serializable,Comparable<Record> {
         return date;
     }
 
-    public void setId(int rank) {this.id = rank;}
+    public void setId(int rank) {
+        this.id = rank;
+    }
 
     public void setScore(int score) {
         this.score = score;

@@ -3,6 +3,7 @@ package com.yuan.AircraftWarMobile.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -28,25 +29,33 @@ public class RankActivity extends AppCompatActivity {
     private ListView lv;
     private TextView tableTitle;
     private static String currenttime;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rank);
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+
         initView();
         dao = new RankDaoImp(this);
 
-        SimpleDateFormat sdf= new SimpleDateFormat("MM-dd HH:mm");
+        //访问网络的代码放在这里
+        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd HH:mm");
         currenttime = sdf.format(System.currentTimeMillis());
-        Record record = new Record(1,"Player", Main.settings.score,currenttime);
+        Record record = new Record(1, Settings.nickname, Main.settings.score, currenttime);
         dao.insert(record);
         try {
-            list=dao.queryAll();
+            list = dao.queryAll();
         } catch (IOException e) {
             e.printStackTrace();
         }
         adapter = new MyAdapter();
         lv.setAdapter(adapter);
     }
-    private void initView(){
+
+    private void initView() {
         lv = (ListView) findViewById(R.id.l1);
         lv.setOnItemClickListener(new MyOnItemClickListener());
         tableTitle = (TextView) findViewById(R.id.tableTitle);
@@ -66,33 +75,40 @@ public class RankActivity extends AppCompatActivity {
 
     private class MyAdapter extends BaseAdapter {
         public int getCount() {
-            return list.size();
+            if (list != null){
+                return list.size();
+            }
+            else return 0;
         }
+
         public Object getItem(int position) {
             return list.get(position);
         }
+
         public long getItemId(int position) {
             return position;
         }
+
         public View getView(int position, View convertView, ViewGroup parent) {
             View item = convertView != null ? convertView : View.inflate(
-                    getApplicationContext(), R.layout.item, null            );
+                    getApplicationContext(), R.layout.item, null);
             TextView idView = (TextView) item.findViewById(R.id.idTV);
             TextView nameView = (TextView) item.findViewById(R.id.nameTV);
             TextView scoreView = (TextView) item.findViewById(R.id.scoreTV);
             TextView dateView = (TextView) item.findViewById(R.id.dateTV);
             final Record record = list.get(position);
-            idView.setText(record.getId()+"");
-            nameView.setText(record.getName()+"");
-            scoreView.setText(record.getScore()+"");
-            dateView.setText(record.getDate()+"");
+            idView.setText(record.getId() + "");
+            nameView.setText(record.getName() + "");
+            scoreView.setText(record.getScore() + "");
+            dateView.setText(record.getDate() + "");
             return item;
         }
     }
+
     private class MyOnItemClickListener implements AdapterView.OnItemClickListener {
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Record r = (Record) parent.getItemAtPosition(position);
-            Toast.makeText(getApplicationContext(),r.toString(),Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), r.toString(), Toast.LENGTH_SHORT).show();
         }
     }
 }

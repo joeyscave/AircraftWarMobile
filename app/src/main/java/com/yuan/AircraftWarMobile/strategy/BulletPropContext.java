@@ -9,17 +9,17 @@ public class BulletPropContext {
     public BulletPropContext(String type) {
         switch (type) {
             case "add shotNum":
-                bulletPropAbstractStrategy=new BulletPropAddShotNum(2);
+                bulletPropAbstractStrategy = new BulletPropAddShotNum(2);
                 break;
             case "scattering":
-                bulletPropAbstractStrategy=new BulletPropScattering();
+                bulletPropAbstractStrategy = new BulletPropScattering();
                 break;
             default:
                 break;
         }
     }
 
-    public void active(HeroAircraft heroAircraft){
+    public void active(HeroAircraft heroAircraft) {
         bulletPropAbstractStrategy.active(heroAircraft);
     }
 }

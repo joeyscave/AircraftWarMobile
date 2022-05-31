@@ -6,6 +6,7 @@ import com.yuan.AircraftWarMobile.observer.Subscriber;
 import com.yuan.AircraftWarMobile.prop.AbstractProp;
 
 import java.util.List;
+
 /**
  * 普通敌机
  * 不可射击
@@ -40,6 +41,6 @@ public class MobEnemy extends AbstractAircraft implements Subscriber {
     @Override
     public void update() {
         this.vanish();
-        Main.settings.score+=10;
+        Main.settings.score += 10;
     }
 }

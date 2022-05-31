@@ -41,7 +41,7 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 public class GameSurfaceView extends SurfaceView implements
         SurfaceHolder.Callback, Runnable {
 
-    public static final String TAG="GameSurfaceView";
+    public static final String TAG = "GameSurfaceView";
     private GameActivity gameActivity;
 
     /**
@@ -84,7 +84,7 @@ public class GameSurfaceView extends SurfaceView implements
 
     public GameSurfaceView(Context context) {
         super(context);
-        gameActivity=(GameActivity)context;
+        gameActivity = (GameActivity) context;
 
         // paint init
         mPaint = new Paint();  //设置画笔
@@ -130,7 +130,7 @@ public class GameSurfaceView extends SurfaceView implements
                 if (bossEnemy != null) {
                     enemyAircrafts.add(bossEnemy);
                     gameActivity.playMusic("bgm_boss");
-                    bgm_boss=true;
+                    bgm_boss = true;
                 }
             }
             // 飞机射出子弹
@@ -300,7 +300,7 @@ public class GameSurfaceView extends SurfaceView implements
      * 无效的原因可能是撞击或者飞出边界
      */
     private void postProcessAction() {
-        if (!bgm_boss){
+        if (!bgm_boss) {
             Log.i(TAG, "postProcessAction: ");
             gameActivity.playMusic("stop_bgm_boss");
         }

@@ -19,6 +19,6 @@ public class BulletPropScattering implements BulletPropAbstractStrategy {
                 heroAircraft.reverseScattering();
             }
         });
-            t.start();
+        t.start();
     }
 }

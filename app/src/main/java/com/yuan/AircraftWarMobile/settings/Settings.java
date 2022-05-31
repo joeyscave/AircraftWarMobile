@@ -3,6 +3,7 @@ package com.yuan.AircraftWarMobile.settings;
 public abstract class Settings {
     static public boolean audio;
     static public int backGroundIndex;
+    static public String nickname;
     public int score;
     public int enemyBlood;
     public int enemySpeed;

@@ -23,24 +23,24 @@ public class GameActivity extends AppCompatActivity {
         playMusic("bgm");
         mGameSurfaceView = new GameSurfaceView(this);
         setContentView(mGameSurfaceView);
-        if (getSupportActionBar()!=null){
+        if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
     }
 
-    public void playMusic(String type){
-        if (Settings.audio){
-            intent_musicService=new Intent(this, MusicService.class);
-            intent_musicService.putExtra("type",type);
+    public void playMusic(String type) {
+        if (Settings.audio) {
+            intent_musicService = new Intent(this, MusicService.class);
+            intent_musicService.putExtra("type", type);
             startService(intent_musicService);
         }
     }
 
-    public void gameOver(){
+    public void gameOver() {
         if (Settings.audio) {
             stopService(intent_musicService);
         }
-        Intent intent=new Intent(this, RankActivity.class);
+        Intent intent = new Intent(this, RankActivity.class);
         startActivity(intent);
         this.finish();
     }

@@ -9,7 +9,7 @@ public class SettingsEasy extends Settings {
         heroBulletPower = 30;
         eliteEnemyEmergeProb = 0.3;
         bossEnemyEmergeScore = 99999999;
-        bossBloodRaise=0;
+        bossBloodRaise = 0;
     }
 
     @Override

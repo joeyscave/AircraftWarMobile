@@ -68,35 +68,35 @@ public class MusicService extends Service {
         player_bgm_boss = MediaPlayer.create(this, R.raw.bgm_boss);
     }
 
-    public void stopMusic(){
+    public void stopMusic() {
         player_bgm.stop();
         player_bgm.reset();
         player_bgm.release();
-        player_bgm=null;
+        player_bgm = null;
         player_bgm_boss.stop();
         player_bgm_boss.reset();
         player_bgm_boss.release();
-        player_bgm_boss=null;
+        player_bgm_boss = null;
         player_bomb_explosion.stop();
         player_bomb_explosion.reset();
         player_bomb_explosion.release();
-        player_bomb_explosion=null;
+        player_bomb_explosion = null;
         player_bullet.stop();
         player_bullet.reset();
         player_bullet.release();
-        player_bullet=null;
+        player_bullet = null;
         player_bullet_hit.stop();
         player_bullet_hit.reset();
         player_bullet_hit.release();
-        player_bullet_hit=null;
+        player_bullet_hit = null;
         player_game_over.stop();
         player_game_over.reset();
         player_game_over.release();
-        player_game_over=null;
+        player_game_over = null;
         player_get_supply.stop();
         player_get_supply.reset();
         player_get_supply.release();
-        player_get_supply=null;
+        player_get_supply = null;
     }
 
     @Override

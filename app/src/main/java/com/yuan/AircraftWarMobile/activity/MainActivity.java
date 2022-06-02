@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     public void reg(View view) {
         startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
     }
@@ -52,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
                 hand1.sendEmptyMessage(msg);
             }
         }.start();
-
     }
 
     @SuppressLint("HandlerLeak")

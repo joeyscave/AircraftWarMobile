@@ -2,6 +2,7 @@ package com.yuan.AircraftWarMobile.application;
 
 import android.util.Log;
 
+import com.yuan.AircraftWarMobile.online.OnlineInfo;
 import com.yuan.AircraftWarMobile.settings.Settings;
 import com.yuan.AircraftWarMobile.settings.SettingsEasy;
 import com.yuan.AircraftWarMobile.settings.SettingsHard;
@@ -16,7 +17,7 @@ public class Main {
 
     public static int WINDOW_WIDTH = 512;
     public static int WINDOW_HEIGHT = 768;
-    public static final Object Main_LOCK = new Object();
+    public static final Object Death_LOCK = new Object();
     public static final Object Bullet_LOCK = new Object();
     public static Settings settings;
 
@@ -39,5 +40,12 @@ public class Main {
         }
         settings.setGame();
 
+        // 重置死亡状态
+        new Thread() {
+            @Override
+            public void run() {
+                OnlineInfo.updateDeath(0);
+            }
+        }.start();
     }
 }

@@ -9,6 +9,7 @@ public class User {
     private int userType;
     private int userState;
     private int userDel;
+    private int userScore;
 
 
     public User() {
@@ -22,6 +23,15 @@ public class User {
         this.userType = userType;
         this.userState = userState;
         this.userDel = userDel;
+        userScore = 0;
+    }
+
+    public int getUserScore() {
+        return userScore;
+    }
+
+    public void setUserScore(int userScore) {
+        this.userScore = userScore;
     }
 
     public int getId() {

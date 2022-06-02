@@ -17,12 +17,12 @@ public class JDBCUtils {
 
     private static String user = "root";// 用户名
 
-    private static String password = "";// 密码
+    private static String password = "yl2vXBS%FjGoSfby";// 密码
     private static Connection connection = null;
     static {
         try {
             Class.forName(driver);// 动态加载类
-            String ip = "172.20.10.3";// 模拟机调试写成本机地址，手机调试写成wifi的ipv4地址，不能写成localhost，同时手机和电脑连接的网络必须是同一个
+            String ip = "120.76.117.99";// 模拟机调试写成本机地址，手机调试写成wifi的ipv4地址，不能写成localhost，同时手机和电脑连接的网络必须是同一个
 
             long start,end;
             start = System.currentTimeMillis();
@@ -30,7 +30,7 @@ public class JDBCUtils {
             connection = DriverManager.getConnection("jdbc:mysql://" + ip + ":3306/" + dbName,
                     user, password);
             end = System.currentTimeMillis();
-            Log.e(TAG, "运行时间：" + (end - start) + "(ms)");
+            Log.i(TAG, "运行时间：" + (end - start) + "(ms)");
 
         } catch (Exception e) {
             e.printStackTrace();

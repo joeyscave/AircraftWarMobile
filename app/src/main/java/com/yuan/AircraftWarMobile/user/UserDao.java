@@ -1,15 +1,14 @@
 package com.yuan.AircraftWarMobile.user;
 
+import android.util.Log;
+
 import com.yuan.AircraftWarMobile.entity.User;
 import com.yuan.AircraftWarMobile.settings.Settings;
 import com.yuan.AircraftWarMobile.utils.JDBCUtils;
 
-import android.util.Log;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashMap;
 
 public class UserDao {
@@ -53,7 +52,6 @@ public class UserDao {
                         System.out.println("昵称"+rs.getString(3));
                         Settings.nickname = rs.getString(3);
                     }
-                    ps.close();
 
                     if (map.size() != 0) {
                         StringBuilder s = new StringBuilder();
@@ -64,11 +62,11 @@ public class UserDao {
                                     msg = 1;            //密码正确
                                 } else
                                     msg = 2;            //密码错误
-                                break;
                             }
                             if (key.equals("userName")){
                                 if (msg==1){
                                     Settings.nickname = (String) map.get(key);
+                                    Settings.userAccount = userAccount;
                                 }
                             }
                         }
@@ -95,12 +93,12 @@ public class UserDao {
      * function: 注册
      */
     public boolean register(User user) {
-        HashMap<String, Object> map = new HashMap<>();
+//        HashMap<String, Object> map = new HashMap<>();
         // 根据数据库名称，建立连接
         Connection connection = JDBCUtils.getConn();
 
         try {
-            String sql = "insert into user(userAccount,userPassword,userName,userType,userState,userDel) values (?,?,?,?,?,?)";
+            String sql = "insert into user(userAccount,userPassword,userName,userType,userState,userDel,userScore) values (?,?,?,?,?,?,?)";
             if (connection != null) {// connection不为null表示与数据库建立了连接
                 PreparedStatement ps = connection.prepareStatement(sql);
                 if (ps != null) {
@@ -112,6 +110,7 @@ public class UserDao {
                     ps.setInt(4, user.getUserType());
                     ps.setInt(5, user.getUserState());
                     ps.setInt(6, user.getUserDel());
+                    ps.setInt(7, user.getUserScore());
 
                     // 执行sql查询语句并返回结果集
                     int rs = ps.executeUpdate();

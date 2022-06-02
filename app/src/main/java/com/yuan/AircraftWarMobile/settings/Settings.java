@@ -2,9 +2,14 @@ package com.yuan.AircraftWarMobile.settings;
 
 public abstract class Settings {
     static public boolean audio;
+    static public int death;
+    static public int opponentDeath;
     static public int backGroundIndex;
     static public String nickname;
-    public int score;
+    static public String opponentName;
+    static public int opponentScore;
+    static public String userAccount;
+    static public int score;
     public int enemyBlood;
     public int enemySpeed;
     public int enemyBulletPower;
@@ -15,6 +20,9 @@ public abstract class Settings {
 
     public void setGame() {
         score = 0;
+        death = 0;
+        opponentScore = 0;
+        opponentDeath = 0;
         set();
     }
 

@@ -19,6 +19,7 @@ import com.yuan.AircraftWarMobile.aircraft.AbstractAircraft;
 import com.yuan.AircraftWarMobile.aircraft.BossEnemy;
 import com.yuan.AircraftWarMobile.aircraft.EliteEnemy;
 import com.yuan.AircraftWarMobile.aircraft.HeroAircraft;
+import com.yuan.AircraftWarMobile.online.OnlineInfo;
 import com.yuan.AircraftWarMobile.service.ImageManager;
 import com.yuan.AircraftWarMobile.application.Main;
 import com.yuan.AircraftWarMobile.basic.AbstractFlyingObject;
@@ -68,6 +69,7 @@ public class GameSurfaceView extends SurfaceView implements
     private int enemyMaxNumber = 5;
 
     private int time = 0;
+    private int deathInterval = 0;
     private boolean gameOverFlag = false;
     public static boolean bgm_boss = false;
 
@@ -151,6 +153,11 @@ public class GameSurfaceView extends SurfaceView implements
 
         // 后处理
         postProcessAction();
+
+        // 对战信息处理
+        if (Settings.opponentName != null) {
+            online();
+        }
 
         // 游戏结束检查
         if (heroAircraft.getHp() <= 0) {
@@ -340,6 +347,10 @@ public class GameSurfaceView extends SurfaceView implements
         // 绘制得分和生命值
         paintScoreAndLife();
 
+        // 绘制对手得分和用户名
+        if (Settings.opponentName != null)
+            paintOpponentScoreAndName();
+
         // 通过unlockCanvasAndPost(mCanvas)方法对画布内容进行提交
         mSurfaceHolder.unlockCanvasAndPost(canvas);
     }
@@ -358,6 +369,23 @@ public class GameSurfaceView extends SurfaceView implements
             } catch (Exception e) {
             }
         }
+    }
+
+    private void online() {
+        if (deathInterval == 3) {
+            deathInterval++;
+        } else {
+            deathInterval = 0;
+        }
+        // 向远端更新本地分数并拉取对手分数、死亡状态
+        new Thread() {
+            @Override
+            public void run() {
+//                Settings.opponentDeath = OnlineInfo.getDeath();
+                OnlineInfo.sentScore();
+                OnlineInfo.getScore();
+            }
+        }.start();
     }
 
     @Override
@@ -451,9 +479,21 @@ public class GameSurfaceView extends SurfaceView implements
         mPaint.setColor(Color.RED);
         mPaint.setTextSize(textSize);
         mPaint.setTypeface(Typeface.DEFAULT_BOLD);
-        canvas.drawText("SCORE:" + Main.settings.score, x, y, mPaint);
-        y *= 2;
         canvas.drawText("LIFE:" + this.heroAircraft.getHp(), x, y, mPaint);
+        y *= 2;
+        canvas.drawText("SCORE:" + Settings.score, x, y, mPaint);
+    }
+
+    private void paintOpponentScoreAndName() {
+        int x = (int) (screenWidth * 0.0185);
+        int y = (int) (screenHeight * 0.09);
+        int textSize = (int) (screenHeight * 0.0228);
+        mPaint.setColor(Color.RED);
+        mPaint.setTextSize(textSize);
+        mPaint.setTypeface(Typeface.DEFAULT_BOLD);
+        canvas.drawText("RIVAL:" + Settings.opponentName, x, y, mPaint);
+        y += (int) (screenHeight * 0.0228);
+        canvas.drawText("SCORE:" + Settings.opponentScore, x, y, mPaint);
     }
 }
 
